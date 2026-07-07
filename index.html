@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Eng. Portfolio & Scheduler</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for soft typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Nunito', 'Noto Sans KR', sans-serif;
+            background-color: #FFF8F9;
+            color: #4A3B40;
+            scroll-behavior: smooth;
+        }
+        /* Custom pastel shadow and borders */
+        .pastel-shadow {
+            box-shadow: 0 10px 30px -5px rgba(255, 182, 193, 0.25);
+        }
+        .pastel-shadow-sm {
+            box-shadow: 0 4px 15px -3px rgba(255, 182, 193, 0.15);
+        }
+        .pastel-border {
+            border: 2px solid #FFE4E8;
+        }
+        /* Soft custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF0F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFCAD4;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFAEC1;
+        }
+        /* Smooth scale transition */
+        .hover-scale {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-scale:hover {
+            transform: translateY(-4px) scale(1.02);
+        }
+        /* Responsiveness for Padlet Frame */
+        .padlet-container {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        // Tailwind pastel configuration extensions
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastel: {
+                            50: '#FFF5F6',
+                            100: '#FFE5E9',
+                            200: '#FFCAD4',
+                            300: '#FFAEC1',
+                            400: '#FF8DA1',
+                            500: '#F26D85',
+                            text: '#4A3B40',
+                            accent: '#F38397'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="selection:bg-pastel-200 selection:text-pastel-text overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b-2 border-pastel-100 transition-all">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-9 h-9 bg-gradient-to-tr from-pastel-200 to-pastel-400 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                    <i class="fa-solid fa-hard-hat"></i>
+                </div>
+                <span class="font-extrabold text-xl text-pastel-text tracking-wide">CivEng<span class="text-pastel-400">.Lee</span></span>
+            </a>
+            
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center space-x-8 font-semibold text-pastel-text text-sm lg:text-base">
+                <a href="#about" class="hover:text-pastel-400 transition-colors">소개</a>
+                <a href="#skills" class="hover:text-pastel-400 transition-colors">보유기술</a>
+                <a href="#projects" class="hover:text-pastel-400 transition-colors">프로젝트</a>
+                <a href="#scheduler" class="hover:text-pastel-400 transition-colors">일정관리</a>
+                <a href="#guestbook" class="hover:text-pastel-400 transition-colors">방명록</a>
+                <a href="#contact" class="hover:text-pastel-400 transition-colors">연락하기</a>
+            </nav>
+
+            <!-- Interactive Header CTA -->
+            <a href="#scheduler" class="bg-pastel-100 hover:bg-pastel-200 text-pastel-500 font-bold px-4 py-2 rounded-full text-xs md:text-sm border-2 border-pastel-200 transition-all flex items-center space-x-2">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>오늘의 스케줄러</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-16 md:py-24 px-6">
+        <!-- Abstract Pastel Shapes (Background Decoration) -->
+        <div class="absolute top-20 left-[-10%] w-72 h-72 bg-pastel-100 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+        <div class="absolute bottom-10 right-[-5%] w-96 h-96 bg-pastel-200 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between relative z-10 gap-12">
+            <!-- Hero Left: Title & Intro -->
+            <div class="flex-1 space-y-6 text-center md:text-left">
+                <span class="inline-block bg-pastel-100 text-pastel-500 font-bold px-4 py-1.5 rounded-full text-sm border border-pastel-200">
+                    <i class="fa-solid fa-compass-drafting mr-1.5"></i> 지속 가능한 세상을 그리는 토목공학도
+                </span>
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-pastel-text">
+                    안녕하세요, 예비 <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pastel-400 to-pastel-500">토목 구조 엔지니어</span><br>
+                    이용준입니다.
+                </h1>
+                <p class="text-pastel-text/75 text-base md:text-lg font-medium leading-relaxed max-w-lg mx-auto md:mx-0">
+                    구조역학적 신뢰와 현대적인 BIM 설계를 결합하여, 사람들의 삶을 더욱 풍요롭고 안전하게 지탱하는 토목 시설물을 고민합니다.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-2">
+                    <a href="#projects" class="w-full sm:w-auto text-center px-8 py-4 bg-pastel-400 hover:bg-pastel-500 text-white font-extrabold rounded-2xl pastel-shadow hover:translate-y-[-2px] transition-all">
+                        프로젝트 보기
+                    </a>
+                    <a href="#guestbook" class="w-full sm:w-auto text-center px-8 py-4 bg-white hover:bg-pastel-50 text-pastel-400 font-extrabold rounded-2xl border-2 border-pastel-200 hover:translate-y-[-2px] transition-all">
+                        방명록 작성하기
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Right: Custom SVG Illustration & Profile -->
+            <div class="flex-1 flex justify-center w-full">
+                <div class="relative w-72 h-72 sm:w-85 sm:h-85 md:w-96 md:h-96">
+                    <!-- Elegant Rounded Frame -->
+                    <div class="absolute inset-0 bg-pastel-100 rounded-[2.5rem] transform rotate-3 scale-105 opacity-80"></div>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-pastel-200 to-pastel-100 rounded-[2.5rem] transform -rotate-3 scale-100"></div>
+                    
+                    <!-- Main Frame Content (Avatar & Graphics) -->
+                    <div class="absolute inset-0 bg-white rounded-[2.5rem] border-4 border-pastel-200 flex flex-col items-center justify-center p-6 text-center shadow-lg overflow-hidden">
+                        <!-- Profile Avatar (Generates a lovely placeholder stylized with SVG) -->
+                        <div class="relative mb-4">
+                            <div class="w-32 h-32 rounded-full bg-pastel-100 border-4 border-pastel-200 flex items-center justify-center overflow-hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-24 h-24 text-pastel-300">
+                                    <circle cx="50" cy="40" r="22" fill="#FFAEC1" opacity="0.4" />
+                                    <path d="M50,15 C40,15 35,22 35,32 C35,42 42,48 50,48 C58,48 65,42 65,32 C65,22 60,15 50,15 Z" fill="#F26D85" />
+                                    <path d="M15,85 C15,65 30,58 50,58 C70,58 85,65 85,85" fill="#F26D85" opacity="0.8" />
+                                    <rect x="40" y="5" width="20" height="12" rx="3" fill="#FFE5E9" />
+                                </svg>
+                            </div>
+                            <!-- Small safety helmet badge overlay -->
+                            <div class="absolute bottom-0 right-1 w-10 h-10 bg-pastel-400 rounded-full border-4 border-white flex items-center justify-center text-white text-sm shadow">
+                                <i class="fa-solid fa-helmet-safety"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-pastel-text">이용준 <span class="text-sm text-pastel-400 font-bold">(Yongjun Lee)</span></h3>
+                        <p class="text-xs font-bold text-pastel-400 mt-1">국민대학교 토목공학과 (4학년)</p>
+                        
+                        <!-- Core stats cards inside hero -->
+                        <div class="grid grid-cols-2 gap-3 w-full mt-5">
+                            <div class="bg-pastel-50 p-3 rounded-xl border border-pastel-100">
+                                <p class="text-[10px] font-bold text-pastel-400 uppercase tracking-wider">Academics</p>
+                                <p class="text-sm font-extrabold text-pastel-text">GPA 4.02 / 4.5</p>
+                            </div>
+                            <div class="bg-pastel-50 p-3 rounded-xl border border-pastel-100">
+                                <p class="text-[10px] font-bold text-pastel-400 uppercase tracking-wider">Certificate</p>
+                                <p class="text-sm font-extrabold text-pastel-text">토목기사 필기 합격</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 px-6 bg-white border-y-2 border-pastel-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-lg mx-auto mb-16">
+                <span class="text-pastel-400 font-extrabold text-sm uppercase tracking-widest">About Me</span>
+                <h2 class="text-3xl font-extrabold text-pastel-text mt-2 relative inline-block">
+                    안전하고 정밀한 인프라 설계
+                    <span class="absolute bottom-[-6px] left-0 w-full h-2 bg-pastel-200 rounded-full opacity-60 z-[-1]"></span>
+                </h2>
+                <p class="text-pastel-text/75 mt-3 text-sm md:text-base">이론적인 역학 지식과 실무 BIM 모델링 능력을 고루 겸비한 공학도입니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Academic History Card -->
+                <div class="pastel-border bg-pastel-50 p-8 rounded-3xl pastel-shadow-sm space-y-6">
+                    <div class="w-12 h-12 bg-pastel-200 rounded-2xl flex items-center justify-center text-pastel-500 text-xl">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-pastel-text">학력 사항</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-pastel-200 pl-4 py-1">
+                            <p class="text-xs font-bold text-pastel-400">2023.03 ~ 현재</p>
+                            <h4 class="font-bold text-pastel-text">국민대학교 토목공학과 (학부생)</h4>
+                            <p class="text-xs text-pastel-text/75 mt-0.5">구조역학, 토질공학, 수리수문학 최우수 이수</p>
+                        </div>
+                        <div class="border-l-4 border-pastel-200 pl-4 py-1">
+                            <p class="text-xs font-bold text-pastel-400">2020.03 ~ 2023.02</p>
+                            <h4 class="font-bold text-pastel-text">미래과학고등학교 (자연과정)</h4>
+                            <p class="text-xs text-pastel-text/75 mt-0.5">물리학 및 수학 전공 기초 심화과정 이수</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Values Card -->
+                <div class="pastel-border bg-white p-8 rounded-3xl pastel-shadow-sm space-y-6">
+                    <div class="w-12 h-12 bg-pastel-200 rounded-2xl flex items-center justify-center text-pastel-500 text-xl">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-pastel-text">핵심 엔지니어십 가치</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <span class="w-6 h-6 bg-pastel-100 rounded-full flex items-center justify-center text-pastel-500 text-xs font-bold mt-1">1</span>
+                            <div>
+                                <h4 class="font-bold text-pastel-text">안전 최우선 설계 원칙</h4>
+                                <p class="text-xs text-pastel-text/75">허용 응력 및 한계 상태 설계를 준수하여 작은 변수도 면밀히 계산합니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="w-6 h-6 bg-pastel-100 rounded-full flex items-center justify-center text-pastel-500 text-xs font-bold mt-1">2</span>
+                            <div>
+                                <h4 class="font-bold text-pastel-text">BIM & 스마트 시공 융합</h4>
+                                <p class="text-xs text-pastel-text/75">전통 토목 공법에 Revit, Civil 3D 등 신기술을 이식하여 시공 효율을 높입니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="w-6 h-6 bg-pastel-100 rounded-full flex items-center justify-center text-pastel-500 text-xs font-bold mt-1">3</span>
+                            <div>
+                                <h4 class="font-bold text-pastel-text">협업 중심의 기획력</h4>
+                                <p class="text-xs text-pastel-text/75">다양한 전공자와의 융합 프로젝트 수행을 통해 발주처와 실무자의 간극을 좁힙니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credentials / Certificates Card -->
+                <div class="pastel-border bg-pastel-50 p-8 rounded-3xl pastel-shadow-sm space-y-6">
+                    <div class="w-12 h-12 bg-pastel-200 rounded-2xl flex items-center justify-center text-pastel-500 text-xl">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-pastel-text">보유 자격 및 활동</h3>
+                    <ul class="space-y-3.5">
+                        <li class="flex items-center space-x-3 bg-white p-2.5 rounded-xl border border-pastel-100">
+                            <i class="fa-solid fa-circle-check text-pastel-400"></i>
+                            <div>
+                                <h4 class="text-xs font-bold text-pastel-text">토목기사 (필기 합격)</h4>
+                                <p class="text-[10px] text-pastel-400">한국산업인력공단 (실기 준비 중)</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-3 bg-white p-2.5 rounded-xl border border-pastel-100">
+                            <i class="fa-solid fa-circle-check text-pastel-400"></i>
+                            <div>
+                                <h4 class="text-xs font-bold text-pastel-text">AutoCAD 2급 (CAT) 자격 취득</h4>
+                                <p class="text-[10px] text-pastel-400">한국생산성본부 (2024)</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-3 bg-white p-2.5 rounded-xl border border-pastel-100">
+                            <i class="fa-solid fa-circle-check text-pastel-400"></i>
+                            <div>
+                                <h4 class="text-xs font-bold text-pastel-text">스마트 융합 교량 모델링 경진대회</h4>
+                                <p class="text-[10px] text-pastel-400">교내 캡스톤 우수상 수상 (2025)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-lg mx-auto mb-16">
+                <span class="text-pastel-400 font-extrabold text-sm uppercase tracking-widest">Engineering Skills</span>
+                <h2 class="text-3xl font-extrabold text-pastel-text mt-2 relative inline-block">
+                    전문 실무 도구 & 역량
+                    <span class="absolute bottom-[-6px] left-0 w-full h-2 bg-pastel-200 rounded-full opacity-60 z-[-1]"></span>
+                </h2>
+                <p class="text-pastel-text/75 mt-3 text-sm md:text-base">이론 해석부터 시뮬레이션, 도면 설계까지 소화 가능한 다양한 소프트웨어 숙련도를 지녔습니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- MIDAS Civil -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-pastel-100 hover-scale pastel-shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 bg-pink-100 text-pink-600 font-bold text-[11px] rounded-lg">구조해석</span>
+                            <span class="text-lg font-bold text-pastel-400">85%</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-pastel-text mb-1">MIDAS Civil</h4>
+                        <p class="text-xs text-pastel-text/70">교량 구조해석, 유한요소 해석, 사하중 및 활하중 처짐 분석 및 자립 상태 안전성 평가 가능.</p>
+                    </div>
+                    <!-- Custom progress bar -->
+                    <div class="w-full bg-pastel-50 h-2.5 rounded-full mt-4 overflow-hidden border border-pastel-100">
+                        <div class="bg-gradient-to-r from-pastel-200 to-pastel-400 h-full rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <!-- AutoCAD -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-pastel-100 hover-scale pastel-shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 bg-pink-100 text-pink-600 font-bold text-[11px] rounded-lg">2D 도면설계</span>
+                            <span class="text-lg font-bold text-pastel-400">90%</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-pastel-text mb-1">AutoCAD Civil</h4>
+                        <p class="text-xs text-pastel-text/70">도로 기하구조 설계, 종횡단면도 추출, 수치 지도 기반의 현황측량 도면 작도 숙련.</p>
+                    </div>
+                    <div class="w-full bg-pastel-50 h-2.5 rounded-full mt-4 overflow-hidden border border-pastel-100">
+                        <div class="bg-gradient-to-r from-pastel-200 to-pastel-400 h-full rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <!-- Autodesk Revit (BIM) -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-pastel-100 hover-scale pastel-shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 bg-pink-100 text-pink-600 font-bold text-[11px] rounded-lg">3D BIM</span>
+                            <span class="text-lg font-bold text-pastel-400">75%</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-pastel-text mb-1">Revit & Civil 3D</h4>
+                        <p class="text-xs text-pastel-text/70">토목 구조물 3D 입체 모델링 설계, 철근 배근 상세 구조 모델링 및 물량 산출서 생성.</p>
+                    </div>
+                    <div class="w-full bg-pastel-50 h-2.5 rounded-full mt-4 overflow-hidden border border-pastel-100">
+                        <div class="bg-gradient-to-r from-pastel-200 to-pastel-400 h-full rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <!-- HEC-RAS / Excel -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-pastel-100 hover-scale pastel-shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 bg-pink-100 text-pink-600 font-bold text-[11px] rounded-lg">수리학 & 수문</span>
+                            <span class="text-lg font-bold text-pastel-400">80%</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-pastel-text mb-1">HEC-RAS & ArcGIS</h4>
+                        <p class="text-xs text-pastel-text/70">단면 수로 수위 계산, 빈도별 홍수 유량 모델링, 하천 범람 면적 산출 및 GIS 연계 공간 분석.</p>
+                    </div>
+                    <div class="w-full bg-pastel-50 h-2.5 rounded-full mt-4 overflow-hidden border border-pastel-100">
+                        <div class="bg-gradient-to-r from-pastel-200 to-pastel-400 h-full rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-white border-t-2 border-pastel-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-lg mx-auto mb-16">
+                <span class="text-pastel-400 font-extrabold text-sm uppercase tracking-widest">My Works</span>
+                <h2 class="text-3xl font-extrabold text-pastel-text mt-2 relative inline-block">
+                    대표 학업 프로젝트
+                    <span class="absolute bottom-[-6px] left-0 w-full h-2 bg-pastel-200 rounded-full opacity-60 z-[-1]"></span>
+                </h2>
+                <p class="text-pastel-text/75 mt-3 text-sm md:text-base">공학적 근거와 현업 가이드라인을 엄격히 따라 구현한 학과 설계 성과들입니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden border-2 border-pastel-100 pastel-shadow-sm flex flex-col h-full hover:translate-y-[-4px] transition-all">
+                    <!-- Dynamic Graphic Placeholder (Using beautiful SVG instead of external URLs) -->
+                    <div class="bg-gradient-to-br from-pastel-100 to-pastel-200 p-8 h-48 flex items-center justify-center relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" class="w-full h-full text-pastel-text">
+                            <!-- Simple Bridge SVG Design -->
+                            <rect x="10" y="80" width="180" height="8" rx="2" fill="#F26D85" />
+                            <path d="M10,80 Q100,20 190,80" stroke="#F26D85" stroke-width="4" fill="none" stroke-dasharray="2,2" />
+                            <line x1="40" y1="80" x2="40" y2="45" stroke="#F26D85" stroke-width="2" />
+                            <line x1="70" y1="80" x2="70" y2="30" stroke="#F26D85" stroke-width="2" />
+                            <line x1="100" y1="80" x2="100" y2="25" stroke="#F26D85" stroke-width="2" />
+                            <line x1="130" y1="80" x2="130" y2="30" stroke="#F26D85" stroke-width="2" />
+                            <line x1="160" y1="80" x2="160" y2="45" stroke="#F26D85" stroke-width="2" />
+                            <rect x="25" y="80" width="10" height="15" fill="#4A3B40" />
+                            <rect x="165" y="80" width="10" height="15" fill="#4A3B40" />
+                        </svg>
+                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-pastel-500 font-extrabold text-[10px] px-2.5 py-1 rounded-full border border-pastel-200 uppercase">MIDAS CIVIL</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-extrabold text-lg text-pastel-text mb-2">MIDAS Civil 기반 합성 거더교 최적 거동 설계</h3>
+                            <p class="text-xs text-pastel-text/75 leading-relaxed">
+                                사하중, 온도 하중, 활하중 조합 상태에서 주거더의 휨 모멘트 및 전단 응력 부위별 영향선을 산출하고 구조적 안정성을 검토했습니다.
+                            </p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between">
+                            <span class="text-[11px] font-bold text-pastel-400">교내 캡스톤 디자인</span>
+                            <button onclick="openProjectModal('bridge')" class="text-xs font-bold text-pastel-500 hover:text-pastel-600 flex items-center space-x-1">
+                                <span>상세보기</span> <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden border-2 border-pastel-100 pastel-shadow-sm flex flex-col h-full hover:translate-y-[-4px] transition-all">
+                    <!-- Dynamic Graphic Placeholder -->
+                    <div class="bg-gradient-to-br from-pastel-100 to-pastel-200 p-8 h-48 flex items-center justify-center relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" class="w-full h-full text-pastel-text">
+                            <!-- Water flow HEC-RAS SVG -->
+                            <path d="M10,80 C50,80 70,50 110,50 C150,50 160,20 190,20 L190,90 L10,90 Z" fill="#FFE5E9" stroke="#FF8DA1" stroke-width="3" />
+                            <path d="M10,65 C50,65 70,35 110,35 C150,35 160,10 190,10" stroke="#F26D85" stroke-width="2" fill="none" stroke-dasharray="4,4" />
+                            <circle cx="110" cy="42" r="4" fill="#F26D85" />
+                            <text x="50" y="88" fill="#F26D85" font-size="10" font-weight="bold">HEC-RAS MODEL</text>
+                        </svg>
+                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-pastel-500 font-extrabold text-[10px] px-2.5 py-1 rounded-full border border-pastel-200 uppercase">HEC-RAS</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-extrabold text-lg text-pastel-text mb-2">지방하천 홍수 범람 유역 수리학적 검토</h3>
+                            <p class="text-xs text-pastel-text/75 leading-relaxed">
+                                HEC-RAS 수리모형 프로그램에 수치 지형도 단면 데이터를 입력하여 강우 빈도별 홍수 수위를 분석하고 최적의 제방 보강 위치를 도출했습니다.
+                            </p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between">
+                            <span class="text-[11px] font-bold text-pastel-400">수리학 실험 연구</span>
+                            <button onclick="openProjectModal('hydraulics')" class="text-xs font-bold text-pastel-500 hover:text-pastel-600 flex items-center space-x-1">
+                                <span>상세보기</span> <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-3xl overflow-hidden border-2 border-pastel-100 pastel-shadow-sm flex flex-col h-full hover:translate-y-[-4px] transition-all">
+                    <!-- Dynamic Graphic Placeholder -->
+                    <div class="bg-gradient-to-br from-pastel-100 to-pastel-200 p-8 h-48 flex items-center justify-center relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" class="w-full h-full text-pastel-text">
+                            <!-- BIM structural column / footing design -->
+                            <rect x="30" y="70" width="140" height="15" rx="2" fill="#F26D85" />
+                            <rect x="75" y="15" width="50" height="55" fill="none" stroke="#F26D85" stroke-width="3" />
+                            <line x1="75" y1="15" x2="125" y2="70" stroke="#F26D85" stroke-width="2" />
+                            <line x1="125" y1="15" x2="75" y2="70" stroke="#F26D85" stroke-width="2" />
+                            <text x="85" y="45" fill="#4A3B40" font-size="10" font-weight="bold">3D BIM</text>
+                        </svg>
+                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-pastel-500 font-extrabold text-[10px] px-2.5 py-1 rounded-full border border-pastel-200 uppercase">REVIT & BIM</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-extrabold text-lg text-pastel-text mb-2">Revit을 활용한 스마트 교량 및 지반 입체 설계</h3>
+                            <p class="text-xs text-pastel-text/75 leading-relaxed">
+                                기존 2D CAD 설계 방식의 한계를 탈피하고 스마트 건설 기법인 BIM을 활용하여, 철근 간섭 분석 및 소요 콘크리트 및 철근 물량을 디지털 산출했습니다.
+                            </p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between">
+                            <span class="text-[11px] font-bold text-pastel-400">BIM 융합 설계</span>
+                            <button onclick="openProjectModal('bim')" class="text-xs font-bold text-pastel-500 hover:text-pastel-600 flex items-center space-x-1">
+                                <span>상세보기</span> <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Scheduler Section -->
+    <section id="scheduler" class="py-20 px-6 bg-pastel-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-lg mx-auto mb-16">
+                <span class="text-pastel-400 font-extrabold text-sm uppercase tracking-widest">Job Prep Planner</span>
+                <h2 class="text-3xl font-extrabold text-pastel-text mt-2 relative inline-block">
+                    취준 일정 관리 스케줄러
+                    <span class="absolute bottom-[-6px] left-0 w-full h-2 bg-pastel-200 rounded-full opacity-60 z-[-1]"></span>
+                </h2>
+                <p class="text-pastel-text/75 mt-3 text-sm md:text-base">자격증 시험, 전공 스터디, 기업 서류 마감 일정을 일사불란하게 확인하세요.</p>
+            </div>
+
+            <!-- Main Interactive Calendar Box -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white p-6 sm:p-8 rounded-[2.5rem] border-2 border-pastel-100 pastel-shadow">
+                
+                <!-- Calendar Left: Interactive Calendar Grid (8 Cols) -->
+                <div class="lg:col-span-7 xl:col-span-8 flex flex-col">
+                    <!-- Calendar Header (Month Selector) -->
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center space-x-2">
+                            <span id="calendar-year-month" class="text-xl sm:text-2xl font-black text-pastel-text">2026년 7월</span>
+                        </div>
+                        <div class="flex space-x-1 bg-pastel-50 p-1.5 rounded-2xl border border-pastel-100">
+                            <button onclick="navigateMonth(-1)" class="w-10 h-10 hover:bg-white text-pastel-500 rounded-xl transition-all flex items-center justify-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button onclick="navigateMonth(0)" class="px-3 hover:bg-white text-xs font-bold text-pastel-500 rounded-xl transition-all">
+                                오늘
+                            </button>
+                            <button onclick="navigateMonth(1)" class="w-10 h-10 hover:bg-white text-pastel-500 rounded-xl transition-all flex items-center justify-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Weekdays Labels -->
+                    <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-xs font-bold text-pastel-400 mb-4 border-b pb-3 border-pastel-100">
+                        <div class="text-red-400">일</div>
+                        <div>월</div>
+                        <div>화</div>
+                        <div>수</div>
+                        <div>목</div>
+                        <div>금</div>
+                        <div class="text-blue-400">토</div>
+                    </div>
+
+                    <!-- Days Grid -->
+                    <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 sm:gap-3 flex-1">
+                        <!-- Javascript injection target -->
+                    </div>
+                </div>
+
+                <!-- Calendar Right: Schedule Management Form & Selected Day List (4/5 Cols) -->
+                <div class="lg:col-span-5 xl:col-span-4 border-t-2 lg:border-t-0 lg:border-l-2 border-pastel-100 pt-8 lg:pt-0 lg:pl-8 flex flex-col justify-between space-y-8">
+                    
+                    <!-- Selected Date Events Panel -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-extrabold text-base sm:text-lg text-pastel-text flex items-center space-x-2">
+                                <i class="fa-solid fa-calendar-day text-pastel-400"></i>
+                                <span id="selected-date-title">일정 목록</span>
+                            </h3>
+                            <span id="selected-date-badge" class="bg-pastel-100 text-pastel-500 text-xs font-bold px-3 py-1 rounded-full border border-pastel-200">
+                                07.07 (오늘)
+                            </span>
+                        </div>
+
+                        <!-- Mini list of events on selected date -->
+                        <div id="selected-date-events" class="space-y-3.5 max-h-56 overflow-y-auto pr-1">
+                            <!-- Dynamic Content loaded from JS -->
+                            <div class="text-center py-8 text-pastel-text/50 text-xs font-medium">이 날짜에 예정된 일정이 없습니다. 일정을 작성해보세요!</div>
+                        </div>
+                    </div>
+
+                    <!-- Add Event Form -->
+                    <div class="bg-pastel-50 p-5 rounded-2xl border border-pastel-100">
+                        <h4 class="font-extrabold text-sm text-pastel-text mb-4 flex items-center space-x-1.5">
+                            <i class="fa-solid fa-plus-circle text-pastel-400"></i>
+                            <span>새 일정 추가하기</span>
+                        </h4>
+                        
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <label class="block font-bold text-pastel-text/80 mb-1">일정 내용</label>
+                                <input id="event-input-title" type="text" placeholder="예: 토목기사 실기 스터디" class="w-full p-2.5 rounded-xl border border-pastel-200 focus:outline-none focus:border-pastel-400 bg-white text-pastel-text">
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block font-bold text-pastel-text/80 mb-1">날짜 선택</label>
+                                    <input id="event-input-date" type="date" class="w-full p-2.5 rounded-xl border border-pastel-200 focus:outline-none focus:border-pastel-400 bg-white text-pastel-text">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-pastel-text/80 mb-1">분류</label>
+                                    <select id="event-input-category" class="w-full p-2.5 rounded-xl border border-pastel-200 focus:outline-none focus:border-pastel-400 bg-white text-pastel-text">
+                                        <option value="study">📝 전공/공부</option>
+                                        <option value="apply">💼 서류제출</option>
+                                        <option value="interview">🤝 면접일정</option>
+                                        <option value="personal">🌸 개인용무</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button onclick="createNewEvent()" class="w-full py-3 bg-pastel-400 hover:bg-pastel-500 text-white font-extrabold rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center space-x-1.5 mt-2">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>일정 저장</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guestbook Section (Padlet Integration) -->
+    <section id="guestbook" class="py-20 px-6 bg-white border-t-2 border-pastel-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-lg mx-auto mb-12">
+                <span class="text-pastel-400 font-extrabold text-sm uppercase tracking-widest">Guestbook</span>
+                <h2 class="text-3xl font-extrabold text-pastel-text mt-2 relative inline-block">
+                    용준이에게 남기는 방명록
+                    <span class="absolute bottom-[-6px] left-0 w-full h-2 bg-pastel-200 rounded-full opacity-60 z-[-1]"></span>
+                </h2>
+                <p class="text-pastel-text/75 mt-3 text-sm md:text-base">
+                    자유로운 질문, 격려의 인사말, 피드백 등 편안한 소통을 환영합니다! 아래 패들릿 담벼락에 글을 남겨주세요.
+                </p>
+            </div>
+
+            <!-- Padlet Iframe Embedding Frame -->
+            <div class="max-w-5xl mx-auto bg-white rounded-[2.5rem] border-4 border-pastel-100 pastel-shadow overflow-hidden p-3 relative">
+                <div class="padlet-container rounded-[2rem] overflow-hidden bg-pastel-50">
+                    <iframe 
+                        src="https://padlet.com/embed/dyd157wns/padlet-59jzcp5ribfpy1t1" 
+                        frameborder="0" 
+                        allow="camera; microphone; geolocation" 
+                        style="width: 100%; height: 100%; display: block;"
+                        class="rounded-[1.8rem]">
+                    </iframe>
+                </div>
+                
+                <!-- Quick Link & Assist CTA under the iframe -->
+                <div class="mt-4 p-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-pastel-50/50 rounded-2xl border border-pastel-100">
+                    <div class="flex items-center space-x-2.5 text-left">
+                        <span class="w-8 h-8 rounded-full bg-pastel-100 flex items-center justify-center text-pastel-500">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <p class="text-xs text-pastel-text/80 font-bold">
+                            패들릿 화면이 잘 보이지 않거나 오류가 날 경우, 아래 단추를 눌러 새 창에서 작성하실 수 있습니다.
+                        </p>
+                    </div>
+                    <a href="https://padlet.com/dyd157wns/padlet-59jzcp5ribfpy1t1" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="w-full sm:w-auto text-center px-5 py-2.5 bg-pastel-400 hover:bg-pastel-500 text-white text-xs font-black rounded-xl shadow-sm transition-all flex items-center justify-center space-x-2 flex-shrink-0">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>새 창에서 방명록 열기</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Message Section -->
+    <section id="contact" class="py-20 px-6 bg-pastel-50 border-t-2 border-pastel-100">
+        <div class="max-w-4xl mx-auto bg-gradient-to-tr from-pastel-50 to-pastel-100 p-8 sm:p-12 rounded-[2.5rem] border-2 border-pastel-200 pastel-shadow relative overflow-hidden">
+            <div class="absolute top-[-20%] right-[-10%] w-72 h-72 bg-white rounded-full opacity-30 blur-2xl pointer-events-none"></div>
+
+            <div class="max-w-xl mx-auto text-center space-y-6 relative z-10">
+                <span class="text-pastel-400 font-extrabold text-sm uppercase tracking-widest">Contact Me</span>
+                <h2 class="text-3xl font-extrabold text-pastel-text">더 나은 기술을 공유하며 <br>함께 소통해 나가요.</h2>
+                <p class="text-pastel-text/75 text-sm">토목 구조 설계 실무진 분들과의 멘토링, 인턴십, 채용 관련 기회 등 다채로운 논의를 적극 환영합니다.</p>
+
+                <!-- Mock Contact Form -->
+                <form onsubmit="handleContactSubmit(event)" class="text-left space-y-4 pt-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" id="contact-name" placeholder="성함 / 회사명" required class="p-4 rounded-2xl border border-pastel-200 focus:outline-none focus:border-pastel-400 bg-white text-sm text-pastel-text w-full">
+                        <input type="email" id="contact-email" placeholder="이메일 주소" required class="p-4 rounded-2xl border border-pastel-200 focus:outline-none focus:border-pastel-400 bg-white text-sm text-pastel-text w-full">
+                    </div>
+                    <textarea id="contact-message" placeholder="상담 혹은 전할 말을 작성해주세요." rows="4" required class="p-4 rounded-2xl border border-pastel-200 focus:outline-none focus:border-pastel-400 bg-white text-sm text-pastel-text w-full"></textarea>
+                    
+                    <button type="submit" class="w-full py-4 bg-pastel-400 hover:bg-pastel-500 text-white font-bold rounded-2xl pastel-shadow hover:translate-y-[-1px] transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>메시지 보내기</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-pastel-50 border-t-2 border-pastel-100 py-10 px-6 text-center text-xs text-pastel-text/60 font-medium">
+        <div class="max-w-6xl mx-auto space-y-4">
+            <div class="flex justify-center space-x-6 text-lg text-pastel-400 mb-2">
+                <a href="#" class="hover:text-pastel-500"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-pastel-500"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" class="hover:text-pastel-500"><i class="fa-solid fa-blog"></i></a>
+            </div>
+            <p>© 2026 Lee Yongjun. All rights reserved. Designed for Civil Engineering Career portfolio.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Floating Success Toast Notifications Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
+
+    <!-- Project Details Modals -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-[2rem] border-2 border-pastel-100 pastel-shadow max-w-lg w-full p-8 relative animate-fade-in">
+            <button onclick="closeProjectModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-pastel-50 hover:bg-pastel-100 text-pastel-500 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="space-y-4">
+                <span id="modal-category" class="bg-pastel-100 text-pastel-500 text-xs font-extrabold px-3 py-1 rounded-full border border-pastel-200 uppercase inline-block">Category</span>
+                <h3 id="modal-title" class="text-xl font-extrabold text-pastel-text">프로젝트 제목</h3>
+                <div id="modal-content" class="text-sm text-pastel-text/80 space-y-3 leading-relaxed">
+                    <!-- Dynamic Body Text -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* -----------------------
+         *  Global State / Seed Data
+         * ----------------------- */
+        let currentDate = new Date(2026, 6, 7); // Set default starting view to July 2026 as per user context
+        let selectedDateString = "2026-07-07";
+
+        // Initial default seed events for a Civil Engineering job seeker
+        const defaultEvents = [
+            { id: 1, title: "건설안전기사 원서접수 기간", date: "2026-07-03", category: "apply" },
+            { id: 2, title: "토목설계 전공 스터디 (MIDAS 교재)", date: "2026-07-07", category: "study" },
+            { id: 3, title: "XX 건설 기술 엔지니어 직무 면접", date: "2026-07-15", category: "interview" },
+            { id: 4, title: "토목기사 실기 모의테스트 풀이", date: "2026-07-20", category: "study" },
+            { id: 5, title: "종합 한강대교 하부 정밀안전 세미나", date: "2026-07-25", category: "personal" }
+        ];
+
+        // Load events from LocalStorage or fallback to seed
+        let events = JSON.parse(localStorage.getItem('civeng_events')) || defaultEvents;
+
+        /* -----------------------
+         *  Lifecycle Initializer
+         * ----------------------- */
+        window.onload = function() {
+            // Setup input date default to selectedDateString
+            document.getElementById('event-input-date').value = selectedDateString;
+            renderCalendar();
+            renderSelectedDateEvents();
+        }
+
+        /* -----------------------
+         *  Custom Dialog / Toast System
+         * ----------------------- */
+        function showToast(message, type = "success") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            // Layout and theme adjustments
+            toast.className = `p-4 rounded-2xl border bg-white shadow-lg flex items-center space-x-3 pointer-events-auto transform translate-y-2 transition-all duration-300 opacity-0 border-pastel-200`;
+            
+            let iconMarkup = `<i class="fa-solid fa-circle-check text-pastel-400 text-lg"></i>`;
+            if (type === "error") {
+                iconMarkup = `<i class="fa-solid fa-circle-exclamation text-red-400 text-lg"></i>`;
+            }
+
+            toast.innerHTML = `
+                ${iconMarkup}
+                <span class="text-xs font-bold text-pastel-text">${message}</span>
+            `;
+
+            container.appendChild(toast);
+            
+            // Animation Trigger
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-2');
+            }, 10);
+
+            // Close duration
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-[-10px]');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        /* -----------------------
+         *  Calendar Rendering Engine
+         * ----------------------- */
+        function renderCalendar() {
+            const grid = document.getElementById('calendar-days-grid');
+            const yearMonthEl = document.getElementById('calendar-year-month');
+            
+            grid.innerHTML = ''; // Clean slate
+
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            yearMonthEl.textContent = `${year}년 ${month + 1}월`;
+
+            // First day of current month
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            // Total days in current month
+            const totalDays = new Date(year, month + 1, 0).getDate();
+            // Total days in previous month
+            const prevTotalDays = new Date(year, month, 0).getDate();
+
+            // 1. Padding from previous month
+            for (let i = firstDayIndex - 1; i >= 0; i--) {
+                const prevDayNum = prevTotalDays - i;
+                const prevDateStr = formatDateStr(year, month - 1, prevDayNum);
+                const hasDot = hasEventsOnDate(prevDateStr);
+
+                grid.appendChild(createDayCell(prevDayNum, prevDateStr, false, false, hasDot));
+            }
+
+            // 2. Main Current Month Days
+            const today = new Date();
+            const todayStr = formatDateStr(today.getFullYear(), today.getMonth(), today.getDate());
+
+            for (let day = 1; day <= totalDays; day++) {
+                const dateStr = formatDateStr(year, month, day);
+                const isToday = dateStr === todayStr;
+                const isSelected = dateStr === selectedDateString;
+                const hasDot = hasEventsOnDate(dateStr);
+
+                grid.appendChild(createDayCell(day, dateStr, true, isSelected, hasDot, isToday));
+            }
+
+            // 3. Padding for next month to finish grid structure (6 rows, 42 blocks total)
+            const remainingBlocks = 42 - (firstDayIndex + totalDays);
+            for (let day = 1; day <= remainingBlocks; day++) {
+                const nextDateStr = formatDateStr(year, month + 1, day);
+                const hasDot = hasEventsOnDate(nextDateStr);
+
+                grid.appendChild(createDayCell(day, nextDateStr, false, false, hasDot));
+            }
+        }
+
+        function createDayCell(dayNum, dateStr, isCurrentMonth, isSelected, hasDot, isToday = false) {
+            const cell = document.createElement('button');
+            cell.type = 'button';
+            cell.onclick = () => selectDate(dateStr);
+
+            // Base structures
+            let classes = "h-11 sm:h-14 rounded-2xl flex flex-col items-center justify-between p-1.5 transition-all text-xs font-bold relative ";
+
+            if (isCurrentMonth) {
+                if (isSelected) {
+                    classes += "bg-pastel-400 text-white shadow-md transform scale-105 ";
+                } else if (isToday) {
+                    classes += "bg-pastel-100 text-pastel-500 border-2 border-pastel-200 ";
+                } else {
+                    classes += "bg-white text-pastel-text hover:bg-pastel-50 border border-pastel-100 ";
+                }
+            } else {
+                classes += "bg-pastel-50/50 text-pastel-text/30 cursor-not-allowed ";
+            }
+
+            cell.className = classes;
+
+            // Day Number label
+            const dayLabel = document.createElement('span');
+            dayLabel.className = isSelected ? "text-white" : "";
+            dayLabel.textContent = dayNum;
+            cell.appendChild(dayLabel);
+
+            // Mini Category Indicator Dot
+            if (hasDot) {
+                const dotContainer = document.createElement('div');
+                dotContainer.className = "flex space-x-1 justify-center items-center mt-1";
+
+                const dateFiltered = events.filter(e => e.date === dateStr);
+                const uniqueCategories = [...new Set(dateFiltered.map(e => e.category))];
+                
+                // Render small colored indicators representing schedule types
+                uniqueCategories.slice(0, 3).forEach(cat => {
+                    const dot = document.createElement('span');
+                    dot.className = `w-1.5 h-1.5 rounded-full ${getCategoryColor(cat)}`;
+                    dotContainer.appendChild(dot);
+                });
+                cell.appendChild(dotContainer);
+            } else {
+                // Invisible placeholder to balance layout heights
+                const emptyDot = document.createElement('div');
+                emptyDot.className = "w-1.5 h-1.5 opacity-0";
+                cell.appendChild(emptyDot);
+            }
+
+            return cell;
+        }
+
+        /* -----------------------
+         *  Calendar Interactive Logic
+         * ----------------------- */
+        function navigateMonth(direction) {
+            if (direction === 0) {
+                currentDate = new Date();
+            } else {
+                currentDate.setMonth(currentDate.getMonth() + direction);
+            }
+            renderCalendar();
+        }
+
+        function selectDate(dateStr) {
+            selectedDateString = dateStr;
+            document.getElementById('event-input-date').value = dateStr;
+            renderCalendar();
+            renderSelectedDateEvents();
+        }
+
+        function hasEventsOnDate(dateStr) {
+            return events.some(e => e.date === dateStr);
+        }
+
+        function getCategoryColor(category) {
+            switch (category) {
+                case 'study': return 'bg-pink-400';
+                case 'apply': return 'bg-blue-400';
+                case 'interview': return 'bg-amber-400';
+                case 'personal': return 'bg-teal-400';
+                default: return 'bg-gray-400';
+            }
+        }
+
+        function getCategoryKorean(category) {
+            switch (category) {
+                case 'study': return '전공/공부';
+                case 'apply': return '서류제출';
+                case 'interview': return '면접일정';
+                case 'personal': return '개인용무';
+                default: return '일반';
+            }
+        }
+
+        function formatDateStr(year, month, day) {
+            // Helper to get consistent ISO string format (YYYY-MM-DD)
+            const targetDate = new Date(year, month, day);
+            const y = targetDate.getFullYear();
+            const m = String(targetDate.getMonth() + 1).padStart(2, '0');
+            const d = String(targetDate.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
+        /* -----------------------
+         *  STREAMING_CHUNK:Finishing interactive animations and event handlers...
+         * ----------------------- */
+        /* -----------------------
+         *  Daily Event Panel List & Actions
+         * ----------------------- */
+        function renderSelectedDateEvents() {
+            const listContainer = document.getElementById('selected-date-events');
+            const badgeEl = document.getElementById('selected-date-badge');
+            
+            // Format title/badge representation
+            const parsedDate = new Date(selectedDateString);
+            const monthDayStr = `${String(parsedDate.getMonth() + 1).padStart(2, '0')}.${String(parsedDate.getDate()).padStart(2, '0')}`;
+            badgeEl.textContent = monthDayStr;
+
+            listContainer.innerHTML = ''; // Clean slate
+
+            const dailyEvents = events.filter(e => e.date === selectedDateString);
+
+            if (dailyEvents.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-8 text-pastel-text/50 text-xs font-medium bg-pastel-50/50 rounded-2xl p-4">
+                        <i class="fa-regular fa-folder-open text-pastel-300 text-lg mb-2 block"></i>
+                        이 날짜에 예정된 일정이 없습니다.
+                    </div>
+                `;
+                return;
+            }
+
+            dailyEvents.forEach(evt => {
+                const item = document.createElement('div');
+                item.className = `flex items-center justify-between p-3.5 bg-white border border-pastel-100 rounded-2xl pastel-shadow-sm transition-all hover:bg-pastel-50/40`;
+                
+                const dotColor = getCategoryColor(evt.category);
+                const categoryKor = getCategoryKorean(evt.category);
+
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="w-3 h-3 rounded-full ${dotColor} flex-shrink-0"></span>
+                        <div>
+                            <h4 class="font-extrabold text-xs text-pastel-text">${evt.title}</h4>
+                            <p class="text-[9px] text-pastel-400 font-bold mt-0.5">${categoryKor}</p>
+                        </div>
+                    </div>
+                    <button onclick="deleteEvent(${evt.id})" class="text-pastel-300 hover:text-red-400 text-xs w-6 h-6 rounded-full hover:bg-red-50 flex items-center justify-center transition-all" title="일정 삭제">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        function createNewEvent() {
+            const titleInput = document.getElementById('event-input-title');
+            const dateInput = document.getElementById('event-input-date');
+            const categorySelect = document.getElementById('event-input-category');
+
+            const title = titleInput.value.trim();
+            const date = dateInput.value;
+            const category = categorySelect.value;
+
+            if (!title) {
+                showToast("일정 내용을 입력해주세요.", "error");
+                return;
+            }
+            if (!date) {
+                showToast("날짜를 정확히 선택해주세요.", "error");
+                return;
+            }
+
+            const newEvent = {
+                id: Date.now(), // Unique identity stamp
+                title: title,
+                date: date,
+                category: category
+            };
+
+            events.push(newEvent);
+            saveEventsToStorage();
+
+            // Reset inputs except Date for better continuous insertion
+            titleInput.value = '';
+            
+            showToast("스케줄러에 새로운 일정이 기록되었습니다!");
+            
+            // Re-render components dynamically
+            renderCalendar();
+            renderSelectedDateEvents();
+        }
+
+        function deleteEvent(id) {
+            events = events.filter(e => e.id !== id);
+            saveEventsToStorage();
+            showToast("일정이 성공적으로 삭제되었습니다.");
+            renderCalendar();
+            renderSelectedDateEvents();
+        }
+
+        function saveEventsToStorage() {
+            localStorage.setItem('civeng_events', JSON.stringify(events));
+        }
+
+        /* -----------------------
+         *  Project Details Modal Handlers
+         * ----------------------- */
+        const projectData = {
+            bridge: {
+                category: "교내 캡스톤 디자인 (구조 해석)",
+                title: "MIDAS Civil을 활용한 합성 거더교 설계 및 영향선 해석",
+                content: `
+                    <p><b>수행 기간:</b> 2025.09 ~ 2025.12 (팀원 3명 중 구조해석 부문 담당)</p>
+                    <p><b>사용 툴:</b> MIDAS Civil, AutoCAD</p>
+                    <p><b>핵심 성과:</b></p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>교량 단면 특성 분석 및 구조 상세 설계안 계산</li>
+                        <li>설계 하중 조합 (자중, 활하중, 풍하중, 수축 및 온도변화) 구성 및 안전성 검토</li>
+                        <li>부재 응력 한계 상태와 변위 처짐량 한계를 만족하는 최적의 강판 두께 20% 절감안 제시</li>
+                    </ul>
+                `
+            },
+            hydraulics: {
+                category: "수리학 실험 및 수문학 연구",
+                title: "하천 수위 시뮬레이션 및 제방 배후 유역 안전 진단",
+                content: `
+                    <p><b>수행 기간:</b> 2024.03 ~ 2024.06 (전공 수리학 연구 프로젝트)</p>
+                    <p><b>사용 툴:</b> HEC-RAS, ArcGIS, MS Excel</p>
+                    <p><b>핵심 성과:</b></p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>국내 특정 지방 하천의 기하학적 횡단면 데이터 수치화 및 유역 변수 처리</li>
+                        <li>100년 및 200년 설계 빈도 강우량을 대입해 배수 영향 및 제방 월류 위기 구간 탐색</li>
+                        <li>최대 유속 및 국부 부식 구간 예측에 따른 수리 구조물 배치 대안 수립</li>
+                    </ul>
+                `
+            },
+            bim: {
+                category: "BIM 융합 설계",
+                title: "Revit 기반 3차원 철근 콘크리트 및 구조적 철골 설계",
+                content: `
+                    <p><b>수행 기간:</b> 2025.03 ~ 2025.06 (개인 프로젝트)</p>
+                    <p><b>사용 툴:</b> Autodesk Revit, Civil 3D</p>
+                    <p><b>핵심 성과:</b></p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>도면 간 간섭(철근과 시공관 등의 부딪힘)을 사전 예측하기 위한 3차원 정밀 구조 렌더링</li>
+                        <li>물량 연동 산출 기능을 통하여 오차 범위 3% 이내의 정밀 콘크리트 중량 및 철근 톤수 계산 완료</li>
+                        <li>도로 기하 기법과 연계된 3D 교량 기초부 배치 및 정밀도 우수상 달성</li>
+                    </ul>
+                `
+            }
+        };
+
+        function openProjectModal(key) {
+            const data = projectData[key];
+            if (!data) return;
+
+            document.getElementById('modal-category').textContent = data.category;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-content').innerHTML = data.content;
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+        }
+
+        /* -----------------------
+         *  Mock Contact Submission Form
+         * ----------------------- */
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const message = document.getElementById('contact-message').value;
+
+            // In actual cases, send data to server. Here we present a simulated response.
+            showToast(`${name}님, 메시지가 성공적으로 전달되었습니다! 신속히 피드백 드리겠습니다.`);
+            
+            // Clear Form
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+        }
+    </script>
+</body>
+</html>
